@@ -3,11 +3,12 @@
 set -xe
 
 # remove old version
-rm -rf build
+rm -rf build dist
 
 # build backend
 ./gradlew build -x browserTest
 
-# copy over new version
-rm -rf ../Parkview/node_modules/parkview
-mv build/js/packages/parkview ../Parkview/node_modules
+mkdir dist/
+
+# Get parkview module
+cp -r build/js/packages/parkview/ dist/

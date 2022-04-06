@@ -2,7 +2,7 @@
 
 set -xe
 
-# remove old version
+# Remove old version
 rm -rf build dist
 
 # build backend

@@ -4,8 +4,7 @@
   "description": "backend for parkview ssg",
   "main": "dist/kotlin/parkview.js",
   "scripts": {
-    "prepare": "rm -rf build && ./gradlew build -x browserTest",
-    "build": "./install-parkview.sh",
+    "prepare": "./install-parkview.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

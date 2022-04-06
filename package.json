@@ -1,0 +1,21 @@
+{
+  "name": "parkview-lib",
+  "version": "1.0.0",
+  "description": "backend for parkview ssg",
+  "main": "dist/kotlin/parkview.js",
+  "scripts": {
+    "prepare": "rm -rf build && ./gradlew build -x browserTest",
+    "build": "./install-parkview.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pse-parkview/parkview-lib.git"
+  },
+  "author": "Parkview",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pse-parkview/parkview-lib/issues"
+  },
+  "homepage": "https://github.com/pse-parkview/parkview-lib#readme"
+}

@@ -28,21 +28,14 @@ class DummyRepositoryHandler : RepositoryHandler {
         DUMMY_COMMIT.addDevice(DUMMY_DEVICE)
     }
 
-    override fun fetchGitHistoryByBranch(branch: String, page: Int, benchmarkType: BenchmarkType): List<Commit> =
+    override fun fetchGitHistoryByBranch(branch: String, page: Int, benchmarkType: BenchmarkType): Array<Commit> =
         if (branch == DUMMY_BRANCH) {
-            listOf(DUMMY_COMMIT)
+            arrayOf(DUMMY_COMMIT)
         } else {
-            emptyList()
+            emptyArray()
         }
 
-    override fun fetchGitHistoryBySha(rev: String, page: Int, benchmarkType: BenchmarkType): List<Commit> =
-        if (rev == DUMMY_COMMIT.sha) {
-            listOf(DUMMY_COMMIT)
-        } else {
-            emptyList()
-        }
-
-    override fun getAvailableBranches(): List<String> = listOf(DUMMY_BRANCH)
+    override fun getAvailableBranches(): Array<String> = arrayOf(DUMMY_BRANCH)
 
     override fun getNumberOfPages(branch: String): Int = 1
 }

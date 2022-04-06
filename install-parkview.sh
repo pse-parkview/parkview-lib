@@ -9,5 +9,5 @@ rm -rf build
 ./gradlew build -x browserTest
 
 # copy over new version
-rm -rf ../frontend/node_modules/parkview
-mv build/js/packages/parkview ../frontend/node_modules
+rm -rf ../Parkview/node_modules/parkview
+mv build/js/packages/parkview ../Parkview/node_modules

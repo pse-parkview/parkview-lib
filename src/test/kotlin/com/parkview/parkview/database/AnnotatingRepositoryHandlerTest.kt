@@ -35,14 +35,10 @@ internal class AnnotatingRepositoryHandlerTest {
     private object MockRepositoryHandler : RepositoryHandler {
         private val commits = listOf(COMMIT_A, COMMIT_B)
 
-        override fun fetchGitHistoryByBranch(branch: String, page: Int, benchmarkType: BenchmarkType): List<Commit> =
-            commits
+        override fun fetchGitHistoryByBranch(branch: String, page: Int, benchmarkType: BenchmarkType): Array<Commit> =
+            commits.toTypedArray()
 
-        override fun fetchGitHistoryBySha(rev: String, page: Int, benchmarkType: BenchmarkType): List<Commit> {
-            TODO("Not yet implemented")
-        }
-
-        override fun getAvailableBranches(): List<String> {
+        override fun getAvailableBranches(): Array<String> {
             throw UnsupportedOperationException("mockup code that should not be used")
         }
 

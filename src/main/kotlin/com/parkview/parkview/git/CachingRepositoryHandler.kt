@@ -39,58 +39,16 @@ class CachingRepositoryHandler(
     private var availableBranchesFetchDate = Date()
 
 
-    override fun fetchGitHistoryByBranch(branch: String, page: Int, benchmarkType: BenchmarkType): List<Commit> =
+    override fun fetchGitHistoryByBranch(branch: String, page: Int, benchmarkType: BenchmarkType): Array<Commit> =
         getOrPutCache(branch, benchmarkType, page).pages.getOrPut(page) {
             handler.fetchGitHistoryByBranch(
                 branch,
                 page,
                 benchmarkType
-            )
-        }
+            ).toList()
+        }.toTypedArray()
 
-
-    override fun fetchGitHistoryBySha(rev: String, page: Int, benchmarkType: BenchmarkType): List<Commit> {
-        val wantedSha = shaCache.find { (it.name == rev) and (it.benchmark == benchmarkType) }
-
-        // rev is not cached
-        if (wantedSha == null) {
-            val newBranch = handler.fetchGitHistoryByBranch(rev, page, benchmarkType)
-            addToShaCache(
-                CachedSha(
-                    rev,
-                    benchmarkType,
-                    Date(),
-                    mutableMapOf(page to newBranch),
-                )
-            )
-
-            return newBranch
-        }
-
-        // too old
-        if (((Date().getTime() - wantedSha.fetchDate.getTime())) / (1000 * 60) > shaLifetime) {
-            val newBranch = handler.fetchGitHistoryByBranch(rev, page, benchmarkType)
-            shaCache.remove(wantedSha)
-            addToShaCache(
-                CachedSha(
-                    rev,
-                    benchmarkType,
-                    Date(),
-                    mutableMapOf(page to newBranch),
-                )
-            )
-
-            return newBranch
-        }
-
-        // hit
-        shaCache.remove(wantedSha)
-        shaCache.add(wantedSha)
-        return wantedSha.pages.getOrPut(page) { handler.fetchGitHistoryByBranch(rev, page, benchmarkType) }
-    }
-
-
-    override fun getAvailableBranches(): List<String> {
+    override fun getAvailableBranches(): Array<String> {
         if (((Date().getTime()) - availableBranchesFetchDate.getTime()) / (1000 * 60) > branchListLifetime) {
             availableBranches = handler.getAvailableBranches()
             availableBranchesFetchDate = Date()
@@ -116,7 +74,7 @@ class CachingRepositoryHandler(
                 branch,
                 benchmarkType,
                 Date(),
-                mutableMapOf(page to handler.fetchGitHistoryByBranch(branch, page, benchmarkType)),
+                mutableMapOf(page to handler.fetchGitHistoryByBranch(branch, page, benchmarkType).toList()),
                 handler.getNumberOfPages(branch)
             )
             addToBranchCache(newBranch)
@@ -131,7 +89,7 @@ class CachingRepositoryHandler(
                 branch,
                 benchmarkType,
                 Date(),
-                mutableMapOf(page to handler.fetchGitHistoryByBranch(branch, page, benchmarkType)),
+                mutableMapOf(page to handler.fetchGitHistoryByBranch(branch, page, benchmarkType).toList()),
                 handler.getNumberOfPages(branch)
             )
             addToBranchCache(newBranch)

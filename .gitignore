@@ -1,4 +1,5 @@
 kotlin-js-store/
 build/
+dist/
 .DS_Store
 .gradle/

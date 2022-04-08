@@ -11,4 +11,5 @@ rm -rf build dist
 mkdir dist/
 
 # Get parkview module
-cp -r build/js/packages/parkview/ dist/
+cp -r build/js/packages/parkview/* dist/
+

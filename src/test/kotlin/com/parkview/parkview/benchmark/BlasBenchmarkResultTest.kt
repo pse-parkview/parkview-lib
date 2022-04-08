@@ -1,7 +1,10 @@
 package com.parkview.parkview.benchmark
 
-import com.parkview.parkview.git.Commit
-import com.parkview.parkview.git.Device
+import git.Commit
+import benchmark.BlasBenchmarkResult
+import benchmark.BlasDatapoint
+import benchmark.Operation
+import git.Device
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals

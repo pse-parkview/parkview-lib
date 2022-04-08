@@ -1,10 +1,11 @@
 package com.parkview.parkview.processing.transforms.blas
 
 import BLAS_RESULT
-import com.parkview.parkview.benchmark.BlasDatapoint
-import com.parkview.parkview.benchmark.Operation
-import com.parkview.parkview.processing.transforms.PlotConfiguration
-import com.parkview.parkview.processing.transforms.filterBlasDatapoints
+import benchmark.BlasDatapoint
+import benchmark.Operation
+import processing.transforms.PlotConfiguration
+import processing.transforms.filterBlasDatapoints
+import processing.transforms.blas.SingleBlasPlot
 import kotlin.test.Test
 import kotlin.test.assertNull
 
@@ -34,10 +35,10 @@ internal class BlasPlotTransformKtTest {
 
         val datapoints = (1..10).map {
             BlasDatapoint(
-                it.toLong() * 1,
-                it.toLong() * 2,
-                it.toLong() * 3,
-                it.toLong() * 4,
+                it * 1,
+                it * 2,
+                it * 3,
+                it * 4,
                 emptyList()
             )
         }

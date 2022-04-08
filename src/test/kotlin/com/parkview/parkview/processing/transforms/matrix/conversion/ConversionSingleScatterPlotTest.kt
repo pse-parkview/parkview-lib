@@ -1,8 +1,9 @@
 package com.parkview.parkview.processing.transforms.matrix.conversion
 
 import CONVERSION_RESULT
-import com.parkview.parkview.processing.transforms.PlotConfiguration
-import com.parkview.parkview.processing.transforms.PointDataset
+import processing.transforms.PlotConfiguration
+import processing.transforms.PointDataset
+import processing.transforms.matrix.conversion.ConversionSingleScatterPlot
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

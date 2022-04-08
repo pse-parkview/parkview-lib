@@ -1,22 +1,22 @@
-import com.parkview.parkview.benchmark.BlasBenchmarkResult
-import com.parkview.parkview.benchmark.BlasDatapoint
-import com.parkview.parkview.benchmark.Component
-import com.parkview.parkview.benchmark.Conversion
-import com.parkview.parkview.benchmark.ConversionBenchmarkResult
-import com.parkview.parkview.benchmark.ConversionDatapoint
-import com.parkview.parkview.benchmark.Format
-import com.parkview.parkview.benchmark.Operation
-import com.parkview.parkview.benchmark.Preconditioner
-import com.parkview.parkview.benchmark.PreconditionerBenchmarkResult
-import com.parkview.parkview.benchmark.PreconditionerDatapoint
-import com.parkview.parkview.benchmark.Solver
-import com.parkview.parkview.benchmark.SolverBenchmarkResult
-import com.parkview.parkview.benchmark.SolverDatapoint
-import com.parkview.parkview.benchmark.SpmvBenchmarkResult
-import com.parkview.parkview.benchmark.SpmvDatapoint
-import com.parkview.parkview.git.BenchmarkResult
-import com.parkview.parkview.git.Commit
-import com.parkview.parkview.git.Device
+import benchmark.BlasBenchmarkResult
+import benchmark.BlasDatapoint
+import benchmark.Component
+import benchmark.Conversion
+import benchmark.ConversionBenchmarkResult
+import benchmark.ConversionDatapoint
+import benchmark.Format
+import benchmark.Operation
+import benchmark.Preconditioner
+import benchmark.PreconditionerBenchmarkResult
+import benchmark.PreconditionerDatapoint
+import benchmark.Solver
+import benchmark.SolverBenchmarkResult
+import benchmark.SolverDatapoint
+import benchmark.SpmvBenchmarkResult
+import benchmark.SpmvDatapoint
+import git.BenchmarkResult
+import git.Commit
+import git.Device
 import kotlin.js.Date
 
 fun BenchmarkResult.dirtyEquals(other: BenchmarkResult) = this.toString() == other.toString()
@@ -30,7 +30,7 @@ val COMMIT_A_RESULT = SpmvBenchmarkResult(
     DEVICE,
     (1..5).map {
         SpmvDatapoint(
-            "", it.toLong() * 10, it.toLong() * 10, it.toLong() * 10,
+            "", it * 10, it * 10, it * 10,
             listOf(
                 Format(name = "", storage = 1, time = 1.0, maxRelativeNorm2 = 1.0, completed = true)
             ),
@@ -43,7 +43,7 @@ val COMMIT_B_RESULT = SpmvBenchmarkResult(
     DEVICE,
     (1..5).map {
         SpmvDatapoint(
-            "", it.toLong() * 10, it.toLong() * 10, it.toLong() * 10,
+            "", it * 10, it * 10, it * 10,
             listOf(
                 Format(name = "", storage = 1, time = 1.0, maxRelativeNorm2 = 1.0, completed = true)
             ),
@@ -56,7 +56,7 @@ val SPMV_RESULT = SpmvBenchmarkResult(
     DEVICE,
     (1..5).map {
         SpmvDatapoint(
-            "", it.toLong() * 10, it.toLong() * 10, it.toLong() * 10,
+            "", it * 10, it * 10, it * 10,
             listOf(
                 Format(name = "", storage = 1, time = 1.0, maxRelativeNorm2 = 1.0, completed = true)
             ),
@@ -69,7 +69,7 @@ val SOLVER_RESULT = SolverBenchmarkResult(
     DEVICE,
     (1..5).map { index ->
         SolverDatapoint(
-            "", index.toLong() * 10, index.toLong() * 10, index.toLong() * 10, "optimal",
+            "", index * 10, index * 10, index * 10, "optimal",
             listOf(
                 Solver(
                     "",
@@ -77,7 +77,7 @@ val SOLVER_RESULT = SolverBenchmarkResult(
                     generateTotalTime = 1.0,
                     recurrentResiduals = (1..100).map { it.toDouble() },
                     applyComponents = listOf(Component("", 1.0)),
-                    applyIterations = index.toLong() * 10,
+                    applyIterations = index * 10,
                     applyTotalTime = 1.0,
                     completed = true
                 )
@@ -91,7 +91,7 @@ val CONVERSION_RESULT = ConversionBenchmarkResult(
     DEVICE,
     (1..5).map {
         ConversionDatapoint(
-            "", it.toLong() * 10, it.toLong() * 10, it.toLong() * 10,
+            "", it * 10, it * 10, it * 10,
             listOf(
                 Conversion("", 1.0, true),
             )
@@ -104,7 +104,7 @@ val BLAS_RESULT = BlasBenchmarkResult(
     DEVICE,
     (1..5).map {
         BlasDatapoint(
-            it.toLong() * 10,
+            it * 10,
             operations = listOf(
                 Operation("", 1.0, 1.0, it * 1.0, true),
             )
@@ -117,7 +117,7 @@ val PRECONDITIONER_RESULT = PreconditionerBenchmarkResult(
     DEVICE,
     (1..5).map {
         PreconditionerDatapoint(
-            "", it.toLong() * 10, it.toLong() * 10, it.toLong() * 10,
+            "", it * 10, it * 10, it * 10,
             listOf(
                 Preconditioner(
                     "",

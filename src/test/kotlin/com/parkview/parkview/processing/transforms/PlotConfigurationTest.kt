@@ -1,8 +1,11 @@
 package com.parkview.parkview.processing.transforms
 
-import com.parkview.parkview.processing.CategoricalOption
-import com.parkview.parkview.processing.NumericalOption
-import com.parkview.parkview.processing.PlotDescription
+import processing.CategoricalOption
+import processing.NumericalOption
+import processing.PlotDescription
+import processing.transforms.InvalidPlotConfigNameException
+import processing.transforms.InvalidPlotConfigValueException
+import processing.transforms.PlotConfiguration
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
 import kotlin.test.assertEquals

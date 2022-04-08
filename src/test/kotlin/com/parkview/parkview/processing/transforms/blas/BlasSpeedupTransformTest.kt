@@ -2,11 +2,12 @@ package com.parkview.parkview.processing.transforms.blas
 
 import COMMIT_A
 import DEVICE
-import com.parkview.parkview.benchmark.BlasBenchmarkResult
-import com.parkview.parkview.benchmark.BlasDatapoint
-import com.parkview.parkview.benchmark.Operation
-import com.parkview.parkview.processing.transforms.PlotConfiguration
-import com.parkview.parkview.processing.transforms.PointDataset
+import benchmark.BlasBenchmarkResult
+import benchmark.BlasDatapoint
+import benchmark.Operation
+import processing.transforms.PlotConfiguration
+import processing.transforms.PointDataset
+import processing.transforms.blas.BlasSpeedupTransform
 import kotlin.test.assertEquals
 import kotlin.test.Test
 
@@ -18,10 +19,10 @@ internal class BlasSpeedupTransformTest {
         DEVICE,
         (1..10).map {
             BlasDatapoint(
-                it.toLong() * 1,
-                it.toLong() * 2,
-                it.toLong() * 3,
-                it.toLong() * 4,
+                it * 1,
+                it * 2,
+                it * 3,
+                it * 4,
                 listOf(Operation("", 1.0, 1.0, it * 1.0, true))
             )
         },

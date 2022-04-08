@@ -1,7 +1,10 @@
 package com.parkview.parkview.benchmark
 
-import com.parkview.parkview.git.Commit
-import com.parkview.parkview.git.Device
+import git.Commit
+import benchmark.Format
+import benchmark.SpmvBenchmarkResult
+import benchmark.SpmvDatapoint
+import git.Device
 import kotlin.js.Date
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -15,7 +18,7 @@ internal class SpmvBenchmarkResultTest {
         val datapoints = (1..5).map {
             val format = Format(name = "", storage = 1, time = 1.0, maxRelativeNorm2 = 1.0, completed = true)
             SpmvDatapoint(
-                "", it.toLong() * 10, it.toLong() * 10, it.toLong() * 10,
+                "", it * 10, it * 10, it * 10,
                 listOf(
                     format
                 ),

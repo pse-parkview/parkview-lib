@@ -1,7 +1,11 @@
 package com.parkview.parkview.benchmark
 
-import com.parkview.parkview.git.Commit
-import com.parkview.parkview.git.Device
+import git.Commit
+import git.Device
+import benchmark.Component
+import benchmark.Solver
+import benchmark.SolverBenchmarkResult
+import benchmark.SolverDatapoint
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -14,14 +18,14 @@ internal class SolverBenchmarkResultTest {
     fun setup() {
         val datapoints = (1..5).map {
             SolverDatapoint(
-                "", it.toLong() * 10, it.toLong() * 10, it.toLong() * 10, "",
+                "", it * 10, it * 10, it * 10, "",
                 listOf(
                     Solver(
                         "",
                         generateComponents = listOf(Component("", 1.0)),
                         generateTotalTime = 1.0,
                         applyComponents = listOf(Component("", 1.0)),
-                        applyIterations = it.toLong() * 10,
+                        applyIterations = it * 10,
                         applyTotalTime = 1.0,
                         completed = true
                     )

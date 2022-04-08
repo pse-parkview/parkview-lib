@@ -1,7 +1,9 @@
 package com.parkview.parkview.processing.transforms
 
 import SPMV_RESULT
-import com.parkview.parkview.processing.transforms.matrix.spmv.SpmvSingleScatterPlot
+import processing.transforms.matrix.spmv.SpmvSingleScatterPlot
+import processing.transforms.InvalidPlotConfigValueException
+import processing.transforms.PlotConfiguration
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
 

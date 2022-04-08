@@ -1,9 +1,10 @@
 package com.parkview.parkview.processing
 
 import SPMV_RESULT
-import com.parkview.parkview.git.BenchmarkType
-import com.parkview.parkview.processing.transforms.matrix.spmv.SpmvSingleScatterPlot
-import com.parkview.parkview.processing.transforms.matrix.spmv.SpmvSpeedupPlot
+import git.BenchmarkType
+import processing.transforms.matrix.spmv.SpmvSingleScatterPlot
+import processing.AvailablePlots
+import processing.transforms.matrix.spmv.SpmvSpeedupPlot
 import kotlin.test.assertTrue
 import kotlin.test.Test
 

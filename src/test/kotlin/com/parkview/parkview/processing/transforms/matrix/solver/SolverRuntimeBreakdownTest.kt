@@ -2,12 +2,13 @@ package com.parkview.parkview.processing.transforms.matrix.solver
 
 import COMMIT_A
 import DEVICE
-import com.parkview.parkview.benchmark.Component
-import com.parkview.parkview.benchmark.Solver
-import com.parkview.parkview.benchmark.SolverBenchmarkResult
-import com.parkview.parkview.benchmark.SolverDatapoint
-import com.parkview.parkview.processing.transforms.BarChartDataset
-import com.parkview.parkview.processing.transforms.PlotConfiguration
+import benchmark.Component
+import benchmark.Solver
+import benchmark.SolverBenchmarkResult
+import benchmark.SolverDatapoint
+import processing.transforms.BarChartDataset
+import processing.transforms.PlotConfiguration
+import processing.transforms.matrix.solver.SolverRuntimeBreakdown
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

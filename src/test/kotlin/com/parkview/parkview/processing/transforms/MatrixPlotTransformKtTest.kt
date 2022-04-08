@@ -2,14 +2,15 @@ package com.parkview.parkview.processing.transforms
 
 import COMMIT_A
 import DEVICE
-import com.parkview.parkview.benchmark.MatrixBenchmarkResult
-import com.parkview.parkview.benchmark.MatrixDatapoint
-import com.parkview.parkview.git.BenchmarkType
-import com.parkview.parkview.git.Commit
-import com.parkview.parkview.git.Device
-import com.parkview.parkview.processing.NumericalOption
-import com.parkview.parkview.processing.PlotDescription
-import com.parkview.parkview.processing.transforms.matrix.MatrixOptions
+import benchmark.MatrixBenchmarkResult
+import benchmark.MatrixDatapoint
+import git.BenchmarkType
+import git.Commit
+import git.Device
+import processing.NumericalOption
+import processing.PlotDescription
+import processing.transforms.matrix.MatrixOptions
+import processing.transforms.PlotConfiguration
 import kotlin.test.assertNull
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -17,9 +18,9 @@ import kotlin.test.assertEquals
 internal class MatrixPlotTransformKtTest {
     class DummyMatrixDatapoint(
         override val name: String,
-        override val rows: Long,
-        override val columns: Long,
-        override val nonzeros: Long,
+        override val rows: Int,
+        override val columns: Int,
+        override val nonzeros: Int,
     ) : MatrixDatapoint
 
     class DummyMatrixBenchmarkResult(
@@ -33,9 +34,9 @@ internal class MatrixPlotTransformKtTest {
     private val datapoints = (1..10).map {
         DummyMatrixDatapoint(
             it.toString(),
-            it.toLong(),
-            it.toLong() * 2,
-            it.toLong() * 3,
+            it,
+            it * 2,
+            it * 3,
         )
     }
 
@@ -92,7 +93,7 @@ internal class MatrixPlotTransformKtTest {
         rowOptions["maxRows"] = "9"
 
         var config = PlotConfiguration(description, rowOptions)
-        val rowFiltered = filterMatrixDatapoints(datapoints, config)
+        val rowFiltered = processing.transforms.filterMatrixDatapoints(datapoints, config)
         assertNull(rowFiltered.find { it.rows < 2 })
         assertNull(rowFiltered.find { it.rows > 9 })
 
@@ -101,7 +102,7 @@ internal class MatrixPlotTransformKtTest {
         columnsOptions["maxColumns"] = "18"
         config = PlotConfiguration(description, columnsOptions)
         val columnsFiltered =
-            filterMatrixDatapoints(datapoints, config)
+            processing.transforms.filterMatrixDatapoints(datapoints, config)
         assertNull(columnsFiltered.find { it.columns < 10 })
         assertNull(columnsFiltered.find { it.columns > 18 })
 
@@ -110,7 +111,7 @@ internal class MatrixPlotTransformKtTest {
         nonzerosOptions["maxNonzeros"] = "21"
         config = PlotConfiguration(description, nonzerosOptions)
         val nonzerosFiltered =
-            filterMatrixDatapoints(datapoints, config)
+            processing.transforms.filterMatrixDatapoints(datapoints, config)
         assertNull(nonzerosFiltered.find { it.nonzeros < 15 })
         assertNull(nonzerosFiltered.find { it.nonzeros > 21 })
     }

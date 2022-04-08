@@ -1,8 +1,9 @@
 package com.parkview.parkview.processing.transforms.matrix.spmv
 
 import SPMV_RESULT
-import com.parkview.parkview.processing.transforms.PlotConfiguration
-import com.parkview.parkview.processing.transforms.PointDataset
+import processing.transforms.PlotConfiguration
+import processing.transforms.PointDataset
+import processing.transforms.matrix.spmv.SpmvSingleScatterPlot
 import kotlin.test.assertEquals
 import kotlin.test.Test
 

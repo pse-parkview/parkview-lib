@@ -2,18 +2,20 @@ package com.parkview.parkview.database
 
 import COMMIT_A
 import COMMIT_B
-import com.parkview.parkview.git.BenchmarkResult
-import com.parkview.parkview.git.BenchmarkType
-import com.parkview.parkview.git.Commit
-import com.parkview.parkview.git.Device
-import com.parkview.parkview.git.RepositoryHandler
+import git.BenchmarkResult
+import git.BenchmarkType
+import git.Commit
+import git.Device
+import git.RepositoryHandler
+import database.AnnotatingRepositoryHandler
+import database.DatabaseHandler
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 internal class AnnotatingRepositoryHandlerTest {
     private object MockDatabaseHandler : DatabaseHandler {
-        override fun insertBenchmarkResults(results: List<BenchmarkResult>) {
+        override fun insertBenchmarkResults(results: Array<BenchmarkResult>) {
             throw UnsupportedOperationException("mockup code that should not be used")
         }
 
@@ -28,8 +30,8 @@ internal class AnnotatingRepositoryHandlerTest {
         override fun hasDataAvailable(commit: Commit, device: Device, benchmark: BenchmarkType) =
             commit.sha == COMMIT_A.sha
 
-        override fun getAvailableDevicesForCommit(commit: Commit, benchmark: BenchmarkType): List<Device> =
-            if ((commit.sha == COMMIT_A.sha) and (benchmark == BenchmarkType.Blas)) listOf(Device("gamer")) else emptyList()
+        override fun getAvailableDevicesForCommit(commit: Commit, benchmark: BenchmarkType): Array<Device> =
+            if ((commit.sha == COMMIT_A.sha) and (benchmark == BenchmarkType.Blas)) arrayOf(Device("gamer")) else emptyArray()
     }
 
     private object MockRepositoryHandler : RepositoryHandler {

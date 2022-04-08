@@ -3,10 +3,12 @@ package com.parkview.parkview.database
 import COMMIT_A
 import COMMIT_A_RESULT
 import DEVICE
-import com.parkview.parkview.git.BenchmarkResult
-import com.parkview.parkview.git.BenchmarkType
-import com.parkview.parkview.git.Commit
-import com.parkview.parkview.git.Device
+import git.BenchmarkResult
+import git.BenchmarkType
+import git.Commit
+import database.CachingDatabaseHandler
+import database.DatabaseHandler
+import git.Device
 import kotlin.test.assertNotEquals
 import kotlin.test.assertNotSame
 import kotlin.test.assertSame
@@ -18,7 +20,7 @@ internal class CachingDatabaseHandlerTest {
     private val mockupHandler = object : DatabaseHandler {
         var dataAvailable = false
 
-        override fun insertBenchmarkResults(results: List<BenchmarkResult>) {}
+        override fun insertBenchmarkResults(results: Array<BenchmarkResult>) {}
 
         override fun fetchBenchmarkResult(commit: Commit, device: Device, benchmark: BenchmarkType): BenchmarkResult =
             COMMIT_A_RESULT.copy()
@@ -28,8 +30,8 @@ internal class CachingDatabaseHandlerTest {
             return dataAvailable
         }
 
-        override fun getAvailableDevicesForCommit(commit: Commit, benchmark: BenchmarkType): List<Device> =
-            listOf(DEVICE)
+        override fun getAvailableDevicesForCommit(commit: Commit, benchmark: BenchmarkType): Array<Device> =
+            arrayOf(DEVICE)
     }
 
     private lateinit var handlerWithMaxDuration: CachingDatabaseHandler
@@ -50,7 +52,7 @@ internal class CachingDatabaseHandlerTest {
     @Test
     fun test_cleared_cache_after_insert() {
         val resultA = handlerWithMaxDuration.fetchBenchmarkResult(COMMIT_A, DEVICE, COMMIT_A_RESULT.benchmark)
-        handlerWithMaxDuration.insertBenchmarkResults(listOf(COMMIT_A_RESULT))
+        handlerWithMaxDuration.insertBenchmarkResults(arrayOf(COMMIT_A_RESULT))
         val resultB = handlerWithMaxDuration.fetchBenchmarkResult(COMMIT_A, DEVICE, COMMIT_A_RESULT.benchmark)
 
         assertNotSame(resultA, resultB)

@@ -1,7 +1,10 @@
 package com.parkview.parkview.benchmark
 
-import com.parkview.parkview.git.Commit
-import com.parkview.parkview.git.Device
+import git.Commit
+import benchmark.Conversion
+import benchmark.ConversionBenchmarkResult
+import benchmark.ConversionDatapoint
+import git.Device
 import kotlin.test.Test
 import kotlin.test.BeforeTest
 import kotlin.test.assertEquals
@@ -14,7 +17,7 @@ internal class ConversionBenchmarkResultTest {
     fun setup() {
         val datapoints = (1..5).map {
             ConversionDatapoint(
-                "", it.toLong() * 10, it.toLong() * 10, it.toLong() * 10,
+                "", it * 10, it * 10, it * 10,
                 listOf(
                     Conversion("", 1.0, true),
                 )
